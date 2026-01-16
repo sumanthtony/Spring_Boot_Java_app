@@ -20,7 +20,7 @@ pipeline{
             steps{
             gitCheckout(
                 branch: "main",
-                url: "https://github.com/praveen1994dec/Java_app_3.0.git"
+                url: "https://github.com/praveen1994dec/Java_app_3.0.git",
                 gitTool: 'javagit'
                 //We can give any custom name for gitTool, but javagit name needs to match with global tools configurations name what we gave in Jenkins
             )
