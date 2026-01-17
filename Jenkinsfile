@@ -50,7 +50,7 @@ pipeline{
          when { expression {  params.action == 'create' } }
             steps{
                 withSonarQubeEnv('sonar-api') {
-                    sh "mvn clean verify sonar:sonar"
+                    sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar"
                 }
             }
        }
