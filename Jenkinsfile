@@ -76,7 +76,10 @@ pipeline{
             steps{
                script{
                    
-                   dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+                   sh """
+                   cd ${env.WORKSPACE}
+                   docker build -t ${DockerHubUser}/${ImageName}:${ImageTag} .
+                   """
                }
             }
         }
