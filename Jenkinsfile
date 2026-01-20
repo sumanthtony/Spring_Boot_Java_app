@@ -78,7 +78,7 @@ pipeline{
                    
                    sh """
                    cd ${env.WORKSPACE}
-                   docker build -t ${DockerHubUser}/${ImageName}:${ImageTag} .
+                   docker build -t ${params.DockerHubUser}/${params.ImageName}:${params.ImageTag} .
                    """
                }
             }
