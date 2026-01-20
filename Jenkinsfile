@@ -22,7 +22,7 @@ pipeline {
             steps {
                 gitCheckout(
                     branch: "main",
-                    url: "https://github.com/praveen1994dec/Java_app_3.0.git",
+                    url: "https://github.com/sumanthtony/Spring_Boot_Java_app.git",
                     gitTool: 'javagit'
                 )
             }
