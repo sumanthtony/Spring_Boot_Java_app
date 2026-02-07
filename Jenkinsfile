@@ -2,12 +2,6 @@
 
 pipeline {
     agent any
-    environment {
-    NEXUS_REPO = "maven-snapshots"
-    GROUP_ID   = "com.minikube.sample"
-    ARTIFACT   = "kubernetes-configmap-reload"
-    VERSION    = "0.0.1-SNAPSHOT"
-}
 
     parameters {
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
@@ -51,32 +45,6 @@ pipeline {
                 }
             }
         }
-        stage('Upload JAR to Nexus') {
-    when { expression { params.action == 'create' } }
-    steps {
-        withCredentials([
-            usernamePassword(
-                credentialsId: 'nexus-creds',
-                usernameVariable: 'NEXUS_USER',
-                passwordVariable: 'NEXUS_PASS'
-            ),
-            string(credentialsId: 'nexus-url', variable: 'NEXUS_URL')
-        ]) {
-            sh """
-            JAR_FILE=\$(ls target/*.jar | head -n 1)
-
-            mvn deploy:deploy-file \
-              -DgroupId=${GROUP_ID} \
-              -DartifactId=${ARTIFACT} \
-              -Dversion=${VERSION} \
-              -Dpackaging=jar \
-              -Dfile=\$JAR_FILE \
-              -DrepositoryId=nexus \
-              -Durl=\${NEXUS_URL}/repository/${NEXUS_REPO}
-            """
-        }
-    }
-}
 
         stage('Static code analysis: Sonarqube') {
             when { expression { params.action == 'create' } }
