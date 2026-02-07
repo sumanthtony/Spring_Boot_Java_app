@@ -3,8 +3,8 @@
 pipeline {
     agent any
     environment {
-    NEXUS_REPO = "Spring-boot-repo"
-    GROUP_ID   = "org.springframework.boot"
+    NEXUS_REPO = "Spring-boot-rep"
+    GROUP_ID   = "com.minikube.sample"
     ARTIFACT   = "javapp"
     VERSION    = "${params.ImageTag}"
 }
