@@ -23,18 +23,18 @@
 <repositories>
         <repository>
             <id>nexus</id>
-            <url>http://15.207.236.218:8081/repository/maven-public/</url>
+            <url>http://15.207.236.218:2222/repository/maven-public/</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
             <id>nexus</id>
-            <url>http://15.207.236.218:8081/repository/maven-releases/</url>
+            <url>http://15.207.236.218:2222/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>nexus</id>
-            <url>http://15.207.236.218:8081/repository/maven-snapshots/</url>
+            <url>http://15.207.236.218:2222/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
