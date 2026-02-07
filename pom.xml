@@ -21,22 +21,6 @@
         <java.version>1.8</java.version>
     </properties>
 <repositories>
-        <repository>
-            <id>nexus</id>
-            <url>http://15.207.236.218:2222/repository/maven-public/</url>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <url>http://15.207.236.218:2222/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus</id>
-            <url>http://15.207.236.218:2222/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <dependencies>
         <dependency>
