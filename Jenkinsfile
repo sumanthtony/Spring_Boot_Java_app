@@ -2,6 +2,12 @@
 
 pipeline {
     agent any
+    environment {
+    NEXUS_REPO = "Spring-boot-repo"
+    GROUP_ID   = "com.be10x.app"
+    ARTIFACT   = "javapp"
+    VERSION    = "${params.ImageTag}"
+}
 
     parameters {
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
