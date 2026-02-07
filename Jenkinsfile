@@ -3,10 +3,10 @@
 pipeline {
     agent any
     environment {
-    NEXUS_REPO = "Spring-boot-rep"
+    NEXUS_REPO = "Spring-boot-repo"
     GROUP_ID   = "com.minikube.sample"
     ARTIFACT   = "kubernetes-configmap-reload"
-    VERSION    = "${params.ImageTag}"
+    VERSION    = "0.0.1-SNAPSHOT"
 }
 
     parameters {
