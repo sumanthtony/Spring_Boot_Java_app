@@ -4,7 +4,7 @@ pipeline {
     agent any
     environment {
     NEXUS_REPO = "Spring-boot-repo"
-    GROUP_ID   = "com.be10x.app"
+    GROUP_ID   = "org.springframework.boot"
     ARTIFACT   = "javapp"
     VERSION    = "${params.ImageTag}"
 }
@@ -51,6 +51,32 @@ pipeline {
                 }
             }
         }
+        stage('Upload JAR to Nexus') {
+    when { expression { params.action == 'create' } }
+    steps {
+        withCredentials([
+            usernamePassword(
+                credentialsId: 'nexus-creds',
+                usernameVariable: 'NEXUS_USER',
+                passwordVariable: 'NEXUS_PASS'
+            ),
+            string(credentialsId: 'nexus-url', variable: 'NEXUS_URL')
+        ]) {
+            sh """
+            JAR_FILE=\$(ls target/*.jar | head -n 1)
+
+            mvn deploy:deploy-file \
+              -DgroupId=${GROUP_ID} \
+              -DartifactId=${ARTIFACT} \
+              -Dversion=${VERSION} \
+              -Dpackaging=jar \
+              -Dfile=\$JAR_FILE \
+              -DrepositoryId=nexus \
+              -Durl=\${NEXUS_URL}/repository/${NEXUS_REPO}
+            """
+        }
+    }
+}
 
         stage('Static code analysis: Sonarqube') {
             when { expression { params.action == 'create' } }
