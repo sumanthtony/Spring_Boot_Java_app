@@ -5,7 +5,7 @@ pipeline {
     environment {
     NEXUS_REPO = "Spring-boot-rep"
     GROUP_ID   = "com.minikube.sample"
-    ARTIFACT   = "javapp"
+    ARTIFACT   = "kubernetes-configmap-reload"
     VERSION    = "${params.ImageTag}"
 }
 
